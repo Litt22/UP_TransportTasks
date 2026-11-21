@@ -327,7 +327,7 @@ namespace UP_TransportTasks
             {
                 MessageBox.Show($"Ошибка при сохранении файла: {ex.Message}", "Ошибка экспорта", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
+        } 
         private void BtnBalance_Click(object sender, RoutedEventArgs e)
         {
             int rows = costBoxes.GetLength(0);
