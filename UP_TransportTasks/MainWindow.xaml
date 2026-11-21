@@ -1,0 +1,77 @@
+﻿<Window x:Class="UP_TransportTasks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UP_TransportTasks"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="White" CornerRadius="8" Padding="8,6" Margin="0,0,0,8" BorderBrush="#DCE1E8" BorderThickness="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Поставщиков (A):" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="SemiBold"/>
+                    <ComboBox x:Name="CmbRows" Width="48" SelectionChanged="Size_Changed" Margin="0,0,12,0"/>
+
+                    <TextBlock Text="Потребителей (B):" VerticalAlignment="Center" Margin="0,0,5,0" FontWeight="SemiBold"/>
+                    <ComboBox x:Name="CmbCols" Width="48" SelectionChanged="Size_Changed" Margin="0,0,14,0"/>
+
+                    <Button Content="Заполнить (сбаланс.)" Click="BtnFillBalanced_Click" 
+                            Padding="9,4" Margin="0,0,6,0" Background="#E8F5E9" BorderBrush="#A5D6A7" Foreground="#1B5E20" FontWeight="SemiBold"/>
+                    <Button Content="Заполнить (несбаланс.)" Click="BtnFillUnbalanced_Click" 
+                            Padding="9,4" Margin="0,0,6,0" Background="#FFF3E0" BorderBrush="#FFCC80" Foreground="#E65100" FontWeight="SemiBold"/>
+                    <Button Content="Очистить" Click="BtnClear_Click" 
+                            Padding="9,4" Margin="0,0,14,0" Background="#FFEBEE" BorderBrush="#EF9A9A" Foreground="#B71C1C" FontWeight="SemiBold"/>
+
+                    <Button Content="Импорт (Excel)" Click="BtnImportExcel_Click" 
+                            Padding="10,4" Margin="0,0,6,0" Background="#EDE7F6" BorderBrush="#B39DDB" Foreground="#4527A0" FontWeight="SemiBold"/>
+                    <Button Content="Экспорт (Excel)" Click="BtnExportExcel_Click" 
+                            Padding="10,4" Background="#E0F2F1" BorderBrush="#80CBC4" Foreground="#004D40" FontWeight="SemiBold"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="1" Background="White" CornerRadius="8" Padding="8" Margin="0,0,0,8" BorderBrush="#DCE1E8" BorderThickness="1">
+                <Grid x:Name="MatrixGrid" HorizontalAlignment="Left"/>
+            </Border>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,8">
+                <Button Content="1. Метод северо-западного угла" Click="BtnNorthWest_Click" 
+                        Padding="14,6" Margin="0,0,10,0" Background="#1976D2" Foreground="White" BorderThickness="0" FontWeight="SemiBold"/>
+                <Button Content="2. Метод минимальных элементов" Click="BtnMinCost_Click" 
+                        Padding="14,6" Margin="0,0,16,0" Background="#2E7D32" Foreground="White" BorderThickness="0" FontWeight="SemiBold"/>
+
+                <Button x:Name="BtnBalance" Content="Сбалансировать" Click="BtnBalance_Click" 
+                        Padding="14,6" Margin="0,0,12,0" Background="#EF6C00" Foreground="White" BorderThickness="0" FontWeight="SemiBold" Visibility="Collapsed"/>
+                <TextBlock x:Name="TxtLiveBalanceStatus" Text="Введите данные" FontSize="13.5" FontWeight="SemiBold" Foreground="#475569" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <Border Grid.Row="3" Background="White" CornerRadius="8" Padding="10" BorderBrush="#DCE1E8" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock x:Name="TxtMethodTitle" Text="Выберите метод расчета" FontSize="15" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,8"/>
+
+                    <Grid x:Name="ResultGrid" HorizontalAlignment="Left"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <Border Background="#F1F5F9" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="6" Padding="12,6" Margin="0,0,12,0">
+                            <TextBlock x:Name="TxtCellsInfo" Text="Занятых клеток: -" FontSize="13.5" Foreground="#334155" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Background="#EFF6FF" BorderBrush="#93C5FD" BorderThickness="1" CornerRadius="6" Padding="14,6">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Итоговая стоимость перевозки: " FontSize="14" Foreground="#1E3A8A" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="TxtTotalCost" Text="-" FontSize="15.5" FontWeight="Bold" Foreground="#1D4ED8" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Window>
